@@ -11,6 +11,7 @@ import { ClientService } from '../client.service';
 export class ClientComponent implements OnInit {
   formGroupClient: FormGroup;
   clients: Client[] = [];
+  genderOptions: string[] = ['Masculino', 'Feminino'];
   isEditing = false;
   submitted: boolean = false;
 
@@ -21,6 +22,7 @@ export class ClientComponent implements OnInit {
     this.formGroupClient = formBuilder.group({
       id: [''],
       name: ['', Validators.required],
+      gender: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       address: ['', Validators.required],
       phone: ['', Validators.required],
@@ -88,6 +90,10 @@ export class ClientComponent implements OnInit {
 
   get name() : any {
     return this.formGroupClient.get("name");
+  }
+
+  get gender() : any {
+    return this.formGroupClient.get("gender");
   }
 
   get email() : any {

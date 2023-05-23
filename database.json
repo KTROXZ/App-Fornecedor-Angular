@@ -3,6 +3,7 @@
     {
       "id": 1,
       "name": "Julio Gomes",
+      "gender": "Masculino",
       "email": "jose.sousa@gbbbbbail.com",
       "address": "Quadra QS 408 Área Especial 1",
       "phone": "1199999-9999",
@@ -12,10 +13,21 @@
     {
       "id": 2,
       "name": "2",
+      "gender": "Masculino",
       "email": "bffbbbf@asasasa.com",
       "address": "1",
       "phone": "1199999-9999",
       "requestDate": "1111-11-11",
+      "completed": false
+    },
+    {
+      "id": 3,
+      "name": "3",
+      "gender": "Masculino",
+      "email": "jossasae.sousa@gbbsasasbbbail.com",
+      "address": "Quadsasra QS 408 sasasaÁrea Especial 1",
+      "phone": "1199999-9999",
+      "requestDate": "2023-01-04",
       "completed": false
     }
   ],
@@ -28,6 +40,26 @@
       "address": "Rua Rio Amazonas, Muruci (Fazendinha)",
       "category": "Hardware",
       "product": "Placa-mãe"
+    },
+    {
+      "id": 2,
+      "companyName": "sasas",
+      "phone": "1199999-9999",
+      "cnpj": "1111111111111111111112121",
+      "address": "Quadra QS 408 Área Especial 1",
+      "category": "Periféricos",
+      "product": "Fone de Ouvido",
+      "completed": false
+    },
+    {
+      "id": 3,
+      "companyName": "1212",
+      "phone": "1199999-9999",
+      "cnpj": "21212122221221",
+      "address": "Quadrassasaa QS 408 Área Especial 1",
+      "category": "Celular & Smartphone",
+      "product": "Samsung",
+      "completed": false
     }
   ]
 }

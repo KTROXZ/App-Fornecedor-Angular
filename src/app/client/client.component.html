@@ -11,6 +11,17 @@
           </div>
         </div>
         <div class="mb-3">
+          <label for="gender" class="form-label">Gênero</label>
+          <select formControlName="gender" class="form-control" id="gender">
+            <option value="" disabled>Selecione o seu Gênero:</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Feminino">Feminino</option>
+          </select>
+          <div *ngIf="submitted && gender.invalid">
+            <small class="text-danger">Selecione o seu Gênero!</small>
+          </div>
+        </div>
+        <div class="mb-3">
           <label for="email" class="form-label">Email:</label>
           <input type="text" formControlName="email" class="form-control" id="email" placeholder="Email">
           <div *ngIf="submitted && email.invalid">
@@ -49,6 +60,7 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Nome</th>
+        <th scope="col">Gênero</th>
         <th scope="col">Email</th>
         <th scope="col">Endereço</th>
         <th scope="col">Telefone</th>
@@ -61,6 +73,7 @@
       <tr *ngFor="let client of clients" [ngClass]="{'completed': client.completed}">
         <th scope="row">{{client.id}}</th>
         <td [ngClass]="{'completed': client.completed}">{{ client.name }}</td>
+        <td [ngClass]="{'completed': client.completed}">{{ client.gender }}</td>
         <td [ngClass]="{'completed': client.completed}">{{ client.email }}</td>
         <td [ngClass]="{'completed': client.completed}">{{ client.address }}</td>
         <td [ngClass]="{'completed': client.completed}">{{ client.phone }}</td>
