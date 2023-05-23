@@ -1,7 +1,7 @@
-import { ClientService } from './../client.service';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Client } from '../client';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { ClientService } from '../client.service';
 
 @Component({
   selector: 'app-client',
@@ -9,9 +9,10 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./client.component.css'],
 })
 export class ClientComponent implements OnInit {
-  clients: Client[] = [];
-  isEditing: boolean = false;
   formGroupClient: FormGroup;
+  clients: Client[] = [];
+  isEditing = false;
+  submitted: boolean = false;
 
   constructor(
     private clientService: ClientService,
@@ -19,49 +20,56 @@ export class ClientComponent implements OnInit {
   ) {
     this.formGroupClient = formBuilder.group({
       id: [''],
-      name: [''],
-      address: [''],
-      phone: [''],
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      address: ['', Validators.required],
+      phone: ['', Validators.required],
       requestDate: [''],
     });
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void{
     this.loadClients();
   }
+
   loadClients() {
     this.clientService.getClients().subscribe({
       next: (data) => (this.clients = data),
     });
   }
 
-  save() {
-    if (this.isEditing) {
-      this.clientService.update(this.formGroupClient.value).subscribe({
-        next: () => {
-          this.loadClients();
-          this.formGroupClient.reset();
-          this.isEditing = false;
-        }
-      });
-    }
-    else {
-      this.clientService.save(this.formGroupClient.value).subscribe({
-        next: data => {
-          this.clients.push(data)
-          this.formGroupClient.reset();
-        }
-       });
+  save(){
+    this.submitted = true;
+    if(this.formGroupClient.valid){
+      if (this.isEditing) {
+        this.clientService.update(this.formGroupClient.value).subscribe({
+          next: () => {
+            this.loadClients();
+            this.formGroupClient.reset();
+            this.isEditing = false;
+            this.submitted = false;
+          }
+        });
+      } else {
+        this.clientService.save(this.formGroupClient.value).subscribe({
+          next: data => {
+            this.clients.push(data)
+            this.formGroupClient.reset();
+            this.submitted = false;
+          }
+         });
+      }
     }
   }
 
   clean(){
     this.formGroupClient.reset();
     this.isEditing = false;
+    this.submitted = false;
   }
 
   edit(client: Client) {
-    this.formGroupClient.setValue(client);
+    this.formGroupClient.patchValue(client);
     this.isEditing = true;
   }
 
@@ -69,5 +77,28 @@ export class ClientComponent implements OnInit {
     this.clientService.delete(client).subscribe({
       next: () => this.loadClients(),
     });
+  }
+
+  toggleCompleted(client: Client){
+    client.completed = !client.completed;
+    this.clientService.update(client).subscribe(() => {
+      this.loadClients();
+    });
+  }
+
+  get name() : any {
+    return this.formGroupClient.get("name");
+  }
+
+  get email() : any {
+    return this.formGroupClient.get("email");
+  }
+
+  get address() : any {
+    return this.formGroupClient.get("address");
+  }
+
+  get phone() : any {
+    return this.formGroupClient.get("phone");
   }
 }

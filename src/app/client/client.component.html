@@ -1,23 +1,40 @@
-<div class="container text-center">
+<div class="container">
   <div class="row">
     <div class="col-8 m-auto">
       <form [formGroup]="formGroupClient">
         <div class="mb-3">
           <div class="display-6 text-center p-3">Cadastro de Clientes</div>
-          <label for="name" class="form-label">Nome: </label>
+          <label for="name" class="form-label">Nome:</label>
           <input type="text" formControlName="name" class="form-control" id="name" placeholder="Nome">
+          <div *ngIf="submitted && name.invalid">
+            <small class="text-danger">Nome inválido!</small>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email:</label>
+          <input type="text" formControlName="email" class="form-control" id="email" placeholder="Email">
+          <div *ngIf="submitted && email.invalid">
+            <small class="text-danger">Email inválido!</small>
+          </div>
         </div>
         <div class="mb-3">
           <label for="address" class="form-label">Endereço:</label>
-          <input type="address" formControlName="address" class="form-control" id="address" placeholder="Endereço">
+          <input type="text" formControlName="address" class="form-control" id="address" placeholder="Endereço">
+          <div *ngIf="submitted && address.invalid">
+            <small class="text-danger">Endereço inválido!</small>
+          </div>
         </div>
         <div class="mb-3">
-          <label for="phone" class="form-label">Telefone</label>
-          <input type="phone" formControlName="phone" class="form-control" id="phone" placeholder="Telefone">
+          <label for="phone" class="form-label">Telefone:</label>
+          <input type="tel" formControlName="phone" class="form-control" id="phone" placeholder="Telefone">
+          <div *ngIf="submitted && phone.invalid">
+            <small class="text-danger">Telefone inválido!</small>
+          </div>
         </div>
         <div class="mb-3">
           <label for="requestDate" class="form-label">Data do Pedido:</label>
-          <input type="requestDate" formControlName="requestDate" class="form-control" id="requestDate" placeholder="Data do Pedido">
+          <input type="date" formControlName="requestDate" class="form-control" id="requestDate"
+            placeholder="Data do Pedido">
         </div>
         <div class="mb-3 d-flex justify-content-end">
           <button class="btn btn-primary me-1" (click)="save()">Salvar</button>
@@ -27,26 +44,30 @@
     </div>
   </div>
 
-
-
-  <table class="table table-dark table-striped">
+  <table class="table table-light table-striped text-center">
     <thead>
       <tr>
         <th scope="col">#</th>
         <th scope="col">Nome</th>
+        <th scope="col">Email</th>
         <th scope="col">Endereço</th>
         <th scope="col">Telefone</th>
         <th scope="col">Data do Pedido</th>
+        <th scope="col">Concluído</th>
         <th scope="col">Opções</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let client of clients">
+      <tr *ngFor="let client of clients" [ngClass]="{'completed': client.completed}">
         <th scope="row">{{client.id}}</th>
-        <td>{{client.name}}</td>
-        <td>{{client.address}}</td>
-        <td>{{client.phone}}</td>
-        <td>{{client.requestDate}}</td>
+        <td [ngClass]="{'completed': client.completed}">{{ client.name }}</td>
+        <td [ngClass]="{'completed': client.completed}">{{ client.email }}</td>
+        <td [ngClass]="{'completed': client.completed}">{{ client.address }}</td>
+        <td [ngClass]="{'completed': client.completed}">{{ client.phone }}</td>
+        <td [ngClass]="{'completed': client.completed}">{{ client.requestDate }}</td>
+        <td>
+          <input type="checkbox" [checked]="client.completed" (change)="toggleCompleted(client)">
+        </td>
         <td>
           <button class="btn btn-primary me-1" (click)="edit(client)">Editar</button>
           <button class="btn btn-danger" (click)="remove(client)">Excluir</button>

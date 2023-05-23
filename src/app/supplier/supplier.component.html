@@ -1,32 +1,61 @@
-<div class="container text-center">
-  <div class="container text-center">
+<div class="container">
     <div class="row">
       <div class="col-8 m-auto">
         <form [formGroup]="formGroupSupplier">
           <div class="mb-3">
             <div class="display-6 text-center p-3">Cadastro de Fornecedores</div>
             <label for="companyName" class="form-label">Nome da Empresa: </label>
-            <input type="text" formControlName="companyName" class="form-control" id="companyName" placeholder="Nome da Empresa">
+            <input type="text" formControlName="companyName" class="form-control" id="companyName"
+              placeholder="Nome da Empresa">
+              <div *ngIf="submitted && companyName.invalid">
+                <small class="text-danger">Nome da empresa inválido!</small>
+              </div>
           </div>
           <div class="mb-3">
             <label for="phone" class="form-label">Telefone:</label>
-            <input type="phone" formControlName="phone" class="form-control" id="phone" placeholder="Telefone">
+            <input type="text" formControlName="phone" class="form-control" id="phone" placeholder="Telefone">
+            <div *ngIf="submitted && phone.invalid">
+              <small class="text-danger">Telefone inválido!</small>
+            </div>
           </div>
           <div class="mb-3">
             <label for="cnpj" class="form-label">Cnpj:</label>
-            <input type="cnpj" formControlName="cnpj" class="form-control" id="cnpj" placeholder="Cnpj">
+            <input type="text" formControlName="cnpj" class="form-control" id="cnpj" placeholder="Cnpj">
+            <div *ngIf="submitted && cnpj.invalid">
+              <small class="text-danger">CNPJ inválido!</small>
+            </div>
           </div>
           <div class="mb-3">
             <label for="address" class="form-label">Endereço:</label>
-            <input type="address" formControlName="address" class="form-control" id="address" placeholder="Endereço">
+            <input type="text" formControlName="address" class="form-control" id="address" placeholder="Endereço">
+            <div *ngIf="submitted && address.invalid">
+              <small class="text-danger">Endereço inválido!</small>
+            </div>
           </div>
           <div class="mb-3">
-            <label for="category" class="form-label">Categoria:</label>
-            <input type="category" formControlName="category" class="form-control" id="category" placeholder="Categoria">
+            <label class="form-label">Categoria:</label>
+            <div class="form-check">
+              <input type="radio" formControlName="category" value="Hardware" class="form-check-input">
+              <label class="form-check-label">Hardware</label>
+            </div>
+            <div class="form-check">
+              <input type="radio" formControlName="category" value="Periféricos" class="form-check-input">
+              <label class="form-check-label">Periféricos</label>
+            </div>
+            <div class="form-check">
+              <input type="radio" formControlName="category" value="Celular & Smartphone" class="form-check-input">
+              <label class="form-check-label">Celular & Smartphone</label>
+            </div>
+            <div *ngIf="submitted && category.invalid">
+              <small class="text-danger">Categoria inválido!</small>
+            </div>
           </div>
           <div class="mb-3">
             <label for="product" class="form-label">Produto:</label>
-            <input type="product" formControlName="product" class="form-control" id="product" placeholder="Produto">
+            <input type="text" formControlName="product" class="form-control" id="product" placeholder="Produto">
+            <div *ngIf="submitted && product.invalid">
+              <small class="text-danger">Produto inválido!</small>
+            </div>
           </div>
           <div class="mb-3 d-flex justify-content-end">
             <button class="btn btn-primary me-1" (click)="save()">Salvar</button>
@@ -38,7 +67,7 @@
 
 
 
-    <table class="table table-dark table-striped">
+    <table class="table table-light table-striped text-center">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -68,4 +97,4 @@
       </tbody>
     </table>
   </div>
-</div>
+

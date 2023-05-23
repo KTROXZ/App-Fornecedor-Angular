@@ -3,23 +3,20 @@
     {
       "id": 1,
       "name": "Julio Gomes",
+      "email": "jose.sousa@gbbbbbail.com",
       "address": "Quadra QS 408 Área Especial 1",
       "phone": "1199999-9999",
-      "requestDate": "11/08/2023"
+      "requestDate": "2023-01-02",
+      "completed": false
     },
     {
       "id": 2,
-      "name": "Carla Silva",
-      "address": "Rua Vinte e Um",
+      "name": "2",
+      "email": "bffbbbf@asasasa.com",
+      "address": "1",
       "phone": "1199999-9999",
-      "requestDate": "17/05/2023"
-    },
-    {
-      "id": 3,
-      "name": "Kaike Correia",
-      "address": "Rua Gercy Barnabé de Souza",
-      "phone": "1199999-9999",
-      "requestDate": "05/07/2023"
+      "requestDate": "1111-11-11",
+      "completed": false
     }
   ],
   "supplier": [
@@ -31,24 +28,6 @@
       "address": "Rua Rio Amazonas, Muruci (Fazendinha)",
       "category": "Hardware",
       "product": "Placa-mãe"
-    },
-    {
-      "id": 2,
-      "companyName": "Cae company",
-      "phone": "1199999-9999",
-      "cnpj": "60.387.692/0001-02",
-      "address": "Rua Galatas, Judith Bhering",
-      "category": "Hardware",
-      "product": "Processador"
-    },
-    {
-      "id": 3,
-      "companyName": "Embray company",
-      "phone": "1199999-9999",
-      "cnpj": "14.856.830/0001-20",
-      "address": "Rua Flávio Pedra, Loteamento Dona Dedé",
-      "category": "Hardware",
-      "product": "Cooler"
     }
   ]
 }
